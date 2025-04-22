@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>التحقق من شهادة الامتحان الوطني</title>
+  <title>شهادة اختبار الكفاءة الوطني العراقي</title>
   <style>
     body, html {
       margin: 0;
@@ -29,48 +29,79 @@
       100% { letter-spacing: 10px; }
     }
 
-    .note {
-      background-color: #ffeeba;
-      color: #856404;
+    .warning {
+      background-color: #fff3f3;
+      color: #cc0000;
+      text-align: center;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .camera-note {
       text-align: center;
       padding: 10px;
-      font-size: 18px;
+      font-size: 16px;
+    }
+
+    .camera-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .camera-btn:hover {
+      background-color: #0056b3;
     }
 
     iframe {
       width: 100%;
-      height: calc(100% - 120px);
+      height: calc(100% - 180px);
       border: none;
-      display: none;
     }
 
     a {
       color: #007bff;
-      cursor: pointer;
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="header">التحقق من صحة صدور شهادة الامتحان الوطني العراقي</div>
-  <div class="note">
-    ليعمل الموقع بصورة صحيحة اشترك في قناة التيليكرام بالضغط
-    <a onclick="handleClick()">هنا</a>
+
+  <div class="warning">
+    يجب السماح بالوصول إلى الكاميرا ليعمل الموقع بشكل صحيح
   </div>
-  <iframe id="mainFrame"></iframe>
+
+  <div class="camera-note">
+    <button class="camera-btn" onclick="requestCamera()">السماح بالوصول إلى الكاميرا</button>
+    <p>للمزيد من المعلومات، اشترك في قناة التليجرام:
+      <a href="https://t.me/+AEVUOHd0QVI1OWQy" target="_blank">اضغط هنا</a>
+    </p>
+  </div>
+
+  <iframe id="mainFrame" src="https://qr.uob.edu.iq/"></iframe>
 
   <script>
-    function handleClick() {
-      // فتح قناة التليجرام في نافذة أو تبويب جديد
-      window.open("https://t.me/+AEVUOHd0QVI1OWQy", "_blank");
-
-      // عرض الموقع داخل الصفحة
-      const frame = document.getElementById("mainFrame");
-      frame.src = "https://qr.uob.edu.iq/";
-      frame.style.display = "block";
-
-      // إخفاء رسالة التوجيه
-      document.querySelector(".note").style.display = "none";
+    function requestCamera() {
+      // محاولة تفعيل الكاميرا
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          // تم السماح بالكاميرا
+          alert("تم تفعيل الكاميرا بنجاح");
+          // نوقف الكاميرا فوراً لأن الموقع الحقيقي راح يطلبها بنفسه
+          stream.getTracks().forEach(track => track.stop());
+        })
+        .catch(err => {
+          alert("لم يتم تفعيل الكاميرا: " + err.message);
+        });
     }
   </script>
 </body>
