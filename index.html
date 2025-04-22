@@ -44,26 +44,9 @@
       font-size: 16px;
     }
 
-    .camera-btn {
-      display: block;
-      margin: 10px auto;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .camera-btn:hover {
-      background-color: #0056b3;
-    }
-
     iframe {
       width: 100%;
-      height: calc(100% - 180px);
+      height: calc(100% - 160px);
       border: none;
     }
 
@@ -81,28 +64,17 @@
   </div>
 
   <div class="camera-note">
-    <button class="camera-btn" onclick="requestCamera()">السماح بالوصول إلى الكاميرا</button>
-    <p>للمزيد من المعلومات، اشترك في قناة التليجرام:
-      <a href="https://t.me/+AEVUOHd0QVI1OWQy" target="_blank">اضغط هنا</a>
-    </p>
+    للمزيد من المعلومات، اشترك في قناة التليجرام:
+    <a href="https://t.me/+AEVUOHd0QVI1OWQy" target="_blank">اضغط هنا</a>
   </div>
 
-  <iframe id="mainFrame" src="https://qr.uob.edu.iq/"></iframe>
+  <!-- السماح باستخدام الكاميرا -->
+  <iframe 
+    id="mainFrame"
+    src="https://qr.uob.edu.iq/"
+    allow="camera; microphone"
+    allowfullscreen
+  ></iframe>
 
-  <script>
-    function requestCamera() {
-      // محاولة تفعيل الكاميرا
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          // تم السماح بالكاميرا
-          alert("تم تفعيل الكاميرا بنجاح");
-          // نوقف الكاميرا فوراً لأن الموقع الحقيقي راح يطلبها بنفسه
-          stream.getTracks().forEach(track => track.stop());
-        })
-        .catch(err => {
-          alert("لم يتم تفعيل الكاميرا: " + err.message);
-        });
-    }
-  </script>
 </body>
 </html>
