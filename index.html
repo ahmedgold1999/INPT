@@ -1,101 +1,156 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>شهادة اختبار الكفاءة الوطني العراقي</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500&display=swap" rel="stylesheet"> <!-- إضافة خط من الإنترنت -->
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Tajawal', sans-serif; /* تغيير الخط */
-      background-color: #f0f0f0;
-    }
-
-    .header {
-      background: linear-gradient(to right, #007bff, #00c3ff);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 15px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .warning {
-      background-color: #fff3f3;
-      color: #cc0000;
-      text-align: center;
-      padding: 12px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .camera-note {
-      text-align: center;
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .telegram-section {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .telegram-section a {
-      color: #007bff;
-      text-decoration: underline;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .telegram-section img {
-      width: 40px;
-      height: 40px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-
-    iframe {
-      width: 100%;
-      height: calc(100% - 180px);
-      border: none;
-    }
-
-    /* Section for site control (scrolling) */
-    .scroll-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل درجات الاجتياز - العراق</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h2 { color: #2c3e50; margin-bottom: 1.5rem; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .form-group { margin-bottom: 1.2rem; text-align: right; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        select:focus { border-color: #3498db; }
+        .result-card {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background-color: #e8f4fd;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .score-val {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+        }
+        .level-val { font-size: 1.2rem; color: #7f8c8d; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
-  <div class="header">التحقق من صحة صدور شهادة الامتحان الوطني العراقي</div>
 
-  <div class="warning">
-    سيطلب الموقع منك السماح بالوصول إلى الكاميرا يجب السماح ليعمل الموقع بشكل صحيح
-  </div>
+<div class="container">
+    <h2>الدرجات المطلوبة للاجتياز</h2>
+    
+    <div class="form-group">
+        <label>اختر نوع الاختبار:</label>
+        <select id="testType" onchange="updateSpecializations()">
+            <option value="">-- اختر --</option>
+            <option value="arabic">اللغة العربية</option>
+            <option value="computer">كفاءة الحاسوب</option>
+            <option value="english">اللغة الانجليزية (INELT)</option>
+        </select>
+    </div>
 
+    <div class="form-group">
+        <label>اختر التخصص والدرجة العلمية:</label>
+        <select id="specType" disabled onchange="showResult()">
+            <option value="">-- اختر الاختبار أولاً --</option>
+        </select>
+    </div>
 
-  <!-- السماح باستخدام الكاميرا -->
-  <iframe 
-    id="mainFrame"
-    src="https://qr.uob.edu.iq/"
-    allow="camera; microphone"
-    allowfullscreen
-  ></iframe>
+    <div id="result" class="result-card">
+        <span style="color: #555;">درجة الاجتياز المطلوبة:</span>
+        <span id="scoreDisplay" class="score-val">--</span>
+        <span id="levelDisplay" class="level-val"></span>
+    </div>
+</div>
 
-  <!-- إضافة قسم التحكم في التمرير / التحريك أسفل الفريم -->
-  <div class="scroll-container">
-    <p>استخدم الأسهم للتحريك أو التمرير.</p>
-  </div>
+<script>
+    const data = {
+        arabic: [
+            { label: "ماجستير / دكتوراه - جميع التخصصات", score: 50 },
+            { label: "ماجستير - تخصص لغة عربية", score: 60 },
+            { label: "دكتوراه - تخصص لغة عربية", score: 70 }
+        ],
+        computer: [
+            { label: "ماجستير - تخصصات إنسانية", score: 50 },
+            { label: "دكتوراه - تخصصات إنسانية", score: 55 },
+            { label: "ماجستير - تخصصات علمية", score: 60 },
+            { label: "دكتوراه - تخصصات علمية", score: 65 },
+            { label: "ماجستير - تخصص حاسوب", score: 70 },
+            { label: "دكتوراه - تخصص حاسوب", score: 75 }
+        ],
+        english: [
+            { label: "دبلوم عالي - علمية / إنسانية", score: 50, level: "A1" },
+            { label: "ماجستير - إنسانية (عدا الإنجليزية)", score: 50, level: "A1" },
+            { label: "دكتوراه - إنسانية (عدا الإنجليزية)", score: 55, level: "A2" },
+            { label: "ماجستير - علمية (تربية صرفة، زراعة، رياضة..)", score: 60, level: "B1" },
+            { label: "دكتوراه - علمية (تربية صرفة، زراعة، رياضة..)", score: 65, level: "B2" },
+            { label: "ماجستير - علمية (هندسة، علوم، طب..)", score: 65, level: "B2" },
+            { label: "دكتوراه - علمية (هندسة، علوم، طب..)", score: 70, level: "C1" },
+            { label: "ماجستير - تخصص لغة إنجليزية / ترجمة", score: 70, level: "C1" },
+            { label: "ماجستير - طبية (طب، أسنان، صيدلة)", score: 70, level: "C1" },
+            { label: "دكتوراه - تخصص لغة إنجليزية / ترجمة", score: 75, level: "C2" },
+            { label: "دكتوراه طبية والبورد العراقي", score: 75, level: "C2" }
+        ]
+    };
+
+    function updateSpecializations() {
+        const testType = document.getElementById('testType').value;
+        const specSelect = document.getElementById('specType');
+        const resultDiv = document.getElementById('result');
+        
+        specSelect.innerHTML = '<option value="">-- اختر التخصص --</option>';
+        resultDiv.style.display = 'none';
+
+        if (testType) {
+            specSelect.disabled = false;
+            data[testType].forEach((item, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = item.label;
+                specSelect.appendChild(option);
+            });
+        } else {
+            specSelect.disabled = true;
+        }
+    }
+
+    function showResult() {
+        const testType = document.getElementById('testType').value;
+        const specIndex = document.getElementById('specType').value;
+        const resultDiv = document.getElementById('result');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const levelDisplay = document.getElementById('levelDisplay');
+
+        if (specIndex !== "") {
+            const selectedData = data[testType][specIndex];
+            scoreDisplay.textContent = selectedData.score;
+            levelDisplay.textContent = selectedData.level ? `التقدير الموازي: ${selectedData.level}` : "";
+            resultDiv.style.display = 'block';
+        } else {
+            resultDiv.style.display = 'none';
+        }
+    }
+</script>
 
 </body>
 </html>
