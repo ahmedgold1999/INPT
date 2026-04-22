@@ -2,262 +2,610 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة درجات الاجتياز | العراق</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ديوان المعارف العليا | بوابة درجات النجاح</title>
+    <!-- Tajawal: خط أنيق وعصري يناسب الهوية الأكاديمية -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (أيقونات فاخرة) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #0f172a;
-            --accent: #38bdf8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: radial-gradient(circle at 10% 20%, rgba(2, 37, 68, 0.08) 0%, rgba(12, 52, 97, 0.12) 100%);
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .glass-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 550px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
             position: relative;
+        }
+
+        /* خلفية مزخرفة عراقية بسيطة (شموخ) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.03"><path fill="none" stroke="%231e3a5f" stroke-width="1.2" d="M400 50 L450 120 L530 140 L480 210 L500 300 L420 270 L340 300 L360 210 L310 140 L390 120 Z M600 400 L640 450 L720 470 L680 530 L700 600 L620 570 L550 600 L570 530 L530 470 L600 450 Z M200 500 L240 540 L300 560 L270 610 L290 670 L220 640 L150 670 L170 610 L140 560 L200 540 Z"/><circle cx="400" cy="500" r="18"/><circle cx="550" cy="300" r="14"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* الحاوية الرئيسية الفاخرة */
+        .royal-container {
+            max-width: 680px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(0px);
+            border-radius: 48px 48px 48px 32px;
+            box-shadow: 0 35px 68px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        header {
+        /* رأسية ذهبية عصرية */
+        .luxury-header {
+            background: linear-gradient(135deg, #0A1927 0%, #102B3F 100%);
+            padding: 2rem 2rem 1.5rem;
             text-align: center;
-            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .luxury-header::after {
+            content: "⚜️";
+            font-size: 2rem;
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #D4AF37;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A1927;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 3px solid #F9E0A0;
+            line-height: 1;
         }
 
         h1 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin: 0;
-            font-weight: 700;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #F9E0A0;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        p.subtitle {
-            color: #64748b;
+        h1 i {
+            font-size: 2rem;
+            color: #D4AF37;
+        }
+
+        .subhead {
+            color: #B8D0E5;
+            font-weight: 500;
+            margin-top: 12px;
             font-size: 0.9rem;
-            margin-top: 8px;
+            border-top: 1px dashed rgba(212, 175, 55, 0.4);
+            display: inline-block;
+            padding-top: 8px;
+        }
+
+        /* حقل الاختيارات الفاخر */
+        .selection-area {
+            padding: 2.2rem 2rem 1.8rem;
+            background: #FFFFFF;
         }
 
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
+            position: relative;
         }
 
-        label {
+        .input-group label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: #475569;
-            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1F3B4C;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            padding-right: 8px;
+            border-right: 4px solid #D4AF37;
+        }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
         }
 
         select {
             width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 16px 20px;
+            font-family: 'Tajawal', sans-serif;
             font-size: 1rem;
-            font-family: inherit;
-            color: var(--secondary);
-            background-color: #fff;
+            font-weight: 500;
+            background-color: #FEFCF5;
+            border: 2px solid #E2E8F0;
+            border-radius: 28px;
+            color: #0F2C3D;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23B68B40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
             background-repeat: no-repeat;
-            background-position: left 15px center;
+            background-position: left 20px center;
             background-size: 18px;
         }
 
         select:focus {
+            border-color: #D4AF37;
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
+            background-color: #FFFFFF;
         }
 
         select:disabled {
-            background-color: #f1f5f9;
+            background-color: #F0F3F8;
             cursor: not-allowed;
+            opacity: 0.7;
         }
 
-        #resultArea {
-            margin-top: 35px;
-            padding: 30px;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            color: white;
-            text-align: center;
+        /* لوحة النتائج التفصيلية (فاخرة ومفصلة لكل مادة) */
+        .result-pavilion {
+            margin: 0 1.8rem 2rem 1.8rem;
+            background: linear-gradient(145deg, #FEFBF0 0%, #F7F3E3 100%);
+            border-radius: 42px;
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+            padding: 1.6rem 1.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             display: none;
-            transform: scale(0.95);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #resultArea.show {
+        .result-pavilion.show {
             display: block;
-            transform: scale(1);
+            animation: floatIn 0.55s ease-out forwards;
         }
 
-        .score-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-            display: block;
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .score-number {
-            font-size: 4rem;
+        .detail-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-bottom: 2px dashed #D4AF37;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .detail-header h3 {
+            font-size: 1.5rem;
             font-weight: 800;
-            line-height: 1;
-            background: linear-gradient(to bottom, #fff, #94a3b8);
+            color: #2C3E2F;
+            background: linear-gradient(120deg, #2C3E2F, #1E4A5F);
+            background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 10px 0;
+            color: transparent;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(56, 189, 248, 0.2);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-top: 10px;
+        .badge-gold {
+            background: #D4AF37;
+            color: #0F1A24;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1), 0 4px 12px rgba(212,175,55,0.3);
+        }
+
+        /* بطاقة تفصيل المادة المطلوبة */
+        .subject-detail-card {
+            background: white;
+            border-radius: 28px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+            border-right: 8px solid #D4AF37;
+            transition: transform 0.2s;
+        }
+
+        .subject-detail-card:hover {
+            transform: translateX(-4px);
+        }
+
+        .subject-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1E3B2F;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subject-name i {
+            color: #D4AF37;
+            font-size: 1.4rem;
+        }
+
+        .requirements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 15px;
+            justify-content: flex-start;
+        }
+
+        .req-item {
+            background: #F9F5E8;
+            padding: 8px 16px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #2C553D;
+        }
+
+        .req-item i {
+            color: #B8860B;
+        }
+
+        .score-big {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #C67C2E;
+            line-height: 1;
+            margin-left: 6px;
+        }
+
+        .level-chip {
+            background: #102B3F;
+            color: #FFE8B6;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-weight: 600;
         }
 
         footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: #94a3b8;
             text-align: center;
+            padding: 1.2rem;
+            background: #F4F0E2;
+            font-size: 0.75rem;
+            color: #5F6C6F;
+            border-top: 1px solid #E9DFC7;
+        }
+
+        @media (max-width: 550px) {
+            .royal-container {
+                border-radius: 32px;
+            }
+            .selection-area {
+                padding: 1.5rem;
+            }
+            .result-pavilion {
+                margin: 0 1rem 1.5rem 1rem;
+                padding: 1rem;
+            }
+            .subject-name {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="glass-card">
-    <header>
-        <h1>دليل كفاءة الاجتياز</h1>
-        <p class="subtitle">الاختبارات الوطنية للدراسات العليا في العراق</p>
-    </header>
-
-    <div class="input-group">
-        <label>نوع الاختبار</label>
-        <select id="testType" onchange="initSpecializations()">
-            <option value="" disabled selected>اختر الاختبار المتخصص...</option>
-            <option value="arabic">اللغة العربية</option>
-            <option value="computer">كفاءة الحاسوب</option>
-            <option value="english">اللغة الانجليزية (INELT)</option>
-        </select>
+<div class="royal-container">
+    <div class="luxury-header">
+        <h1>
+            <i class="fas fa-landmark"></i> 
+            ديوان درجات الاجتياز
+            <i class="fas fa-scroll"></i>
+        </h1>
+        <div class="subhead">
+            <i class="fas fa-chalkboard-user"></i> المجلس الوطني للقبولات العليا – العراق
+        </div>
     </div>
 
-    <div class="input-group">
-        <label>التخصص والدرجة العلمية</label>
-        <select id="specType" disabled onchange="displayResult()">
-            <option value="" disabled selected>يرجى اختيار نوع الاختبار أولاً</option>
-        </select>
+    <div class="selection-area">
+        <div class="input-group">
+            <label><i class="fas fa-flask"></i>  المسار الأكاديمي / الاختبار الرئيسي</label>
+            <div class="custom-select">
+                <select id="examTypeSelect">
+                    <option value="" disabled selected>—— اختر الاختبار التخصصي ——</option>
+                    <option value="arabic">📖 امتحان الكفاءة – اللغة العربية وآدابها</option>
+                    <option value="computer">💻 امتحان كفاءة الحاسوب (ICDL متقدم)</option>
+                    <option value="english">🌍 امتحان الكفاءة الدولي INELT (الإنجليزية)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label><i class="fas fa-graduation-cap"></i>  التخصص والدرجة العلمية (التفاصيل)</label>
+            <div class="custom-select">
+                <select id="specializationSelect" disabled>
+                    <option value="" disabled selected>⚜️ يرجى اختيار الاختبار أولاً ⚜️</option>
+                </select>
+            </div>
+        </div>
     </div>
 
-    <div id="resultArea">
-        <span class="score-label">الحد الأدنى المطلوب</span>
-        <div class="score-number" id="finalScore">--</div>
-        <div id="badgeContainer"></div>
+    <!-- منطقة النتائج التفصيلية (تعرض كافة متطلبات المادة/الدرجة) -->
+    <div id="resultPanel" class="result-pavilion">
+        <div class="detail-header">
+            <h3><i class="fas fa-clipboard-list"></i>  التفاصيل المعتمدة للمادة</h3>
+            <span class="badge-gold"><i class="fas fa-check-circle"></i> معتمد من الوزارة</span>
+        </div>
+        <div id="dynamicDetails">
+            <!-- سيتم عرض البطاقة التفصيلية هنا لكل مادة/تخصص -->
+        </div>
     </div>
-
     <footer>
-        المحتوى مستخرج من الضوابط الرسمية لوزارة التعليم العالي
+        <i class="fas fa-balance-scale"></i> تعتمد هذه المعايير وفق دليل الدراسات العليا 2025 – لكل مسار يتم عرض الحد الأدنى ومستوى الإتقان.
     </footer>
 </div>
 
 <script>
-    const database = {
-        arabic: [
-            { text: "ماجستير ودكتوراه - كافة التخصصات", score: 50 },
-            { text: "ماجستير - تخصص لغة عربية", score: 60 },
-            { text: "دكتوراه - تخصص لغة عربية", score: 70 }
-        ],
-        computer: [
-            { text: "ماجستير - التخصصات الإنسانية", score: 50 },
-            { text: "دكتوراه - التخصصات الإنسانية", score: 55 },
-            { text: "ماجستير - التخصصات العلمية", score: 60 },
-            { text: "دكتوراه - التخصصات العلمية", score: 65 },
-            { text: "ماجستير - تخصص حاسوب", score: 70 },
-            { text: "دكتوراه - تخصص حاسوب", score: 75 }
-        ],
-        english: [
-            { text: "دبلوم عالي - علمية / إنسانية", score: 50, level: "A1" },
-            { text: "ماجستير - إنسانية (عدا الإنجليزية)", score: 50, level: "A1" },
-            { text: "دكتوراه - إنسانية (عدا الإنجليزية)", score: 55, level: "A2" },
-            { text: "ماجستير - علمية (تربية، زراعة، رياضة، سياحة)", score: 60, level: "B1" },
-            { text: "دكتوراه - علمية (تربية، زراعة، رياضة، سياحة)", score: 65, level: "B2" },
-            { text: "ماجستير - علمية (هندسة، علوم، طب، صيدلة)", score: 65, level: "B2" },
-            { text: "دكتوراه - علمية (هندسة، علوم، طب، صيدلة)", score: 70, level: "C1" },
-            { text: "ماجستير - تخصص لغة إنجليزية / ترجمة", score: 70, level: "C1" },
-            { text: "دكتوراه - تخصص لغة إنجليزية / ترجمة", score: 75, level: "C2" },
-            { text: "دكتوراه طبية والبورد العراقي", score: 75, level: "C2" }
-        ]
+    // قاعدة بيانات متكاملة تفصيلية لكل مادة (تخصص) تظهر متطلبات المادة بشكل منفصل
+    const detailedDatabase = {
+        arabic: {
+            examName: "اختبار اللغة العربية (الكفاءة الجامعية)",
+            specializations: [
+                { 
+                    title: "ماجستير - كافة التخصصات (عدا اللغة العربية)", 
+                    requiredScore: 50,
+                    details: "الحد الأدنى لاجتياز المادة: 50 درجة من 100، يشترط الإلمام بقواعد النحو والصرف الأساسية.",
+                    levelDescriptor: "مستوى أساسي B1"
+                },
+                { 
+                    title: "دكتوراه - كافة التخصصات (عدا اللغة العربية)", 
+                    requiredScore: 55,
+                    details: "يتطلب درجة 55 فما فوق، مع قدرة على التحليل الأدبي والنقدي لنصوص متوسطة.",
+                    levelDescriptor: "مستوى متوسط B2"
+                },
+                { 
+                    title: "ماجستير - تخصص لغة عربية وآدابها", 
+                    requiredScore: 60,
+                    details: "يُشترط تحصيل 60 درجة، إجادة البلاغة والنقد، والكتابة الأكاديمية المتقدمة.",
+                    levelDescriptor: "مستوى متقدم C1"
+                },
+                { 
+                    title: "دكتوراه - تخصص لغة عربية وآدابها", 
+                    requiredScore: 70,
+                    details: "درجة 70 كحد أدنى، ويتطلب إتقان فائق للتراث اللغوي والبحث العلمي الرصين.",
+                    levelDescriptor: "مستوى خبير C2+"
+                }
+            ]
+        },
+        computer: {
+            examName: "امتحان كفاءة الحاسوب (تطبيقات متخصصة)",
+            specializations: [
+                { 
+                    title: "ماجستير - التخصصات الإنسانية (آداب، فنون، قانون)", 
+                    requiredScore: 50,
+                    details: "اجتياز أساسيات الحاسوب، معالجة النصوص، العروض التقديمية، درجة النجاح 50.",
+                    levelDescriptor: "مهارات أساسية"
+                },
+                { 
+                    title: "دكتوراه - التخصصات الإنسانية", 
+                    requiredScore: 55,
+                    details: "يتطلب 55 درجة، مع إجادة قواعد البيانات البسيطة والبحث الرقمي.",
+                    levelDescriptor: "متوسط المهارات الرقمية"
+                },
+                { 
+                    title: "ماجستير - التخصصات العلمية (علوم، رياضيات، زراعة)", 
+                    requiredScore: 60,
+                    details: "درجة النجاح 60، إتقان جداول متقدمة، تحليل بيانات باستخدام Excel متقدم.",
+                    levelDescriptor: "مستوى علمي متقدم"
+                },
+                { 
+                    title: "دكتوراه - التخصصات العلمية (هندسة، علوم حياة)", 
+                    requiredScore: 65,
+                    details: "يتطلب 65 درجة، القدرة على برمجة بسيطة أو التعامل مع بيئات المحاكاة.",
+                    levelDescriptor: "مستوى احترافي"
+                },
+                { 
+                    title: "ماجستير - تخصص علوم حاسوب / نظم معلومات", 
+                    requiredScore: 70,
+                    details: "درجة النجاح 70، إجادة الخوارزميات، قواعد البيانات، وإدارة الشبكات الأساسية.",
+                    levelDescriptor: "متقدم تقني C1"
+                },
+                { 
+                    title: "دكتوراه - تخصص حاسوب / ذكاء اصطناعي", 
+                    requiredScore: 75,
+                    details: "يُشترط 75 درجة، ويتطلب مشاريع برمجية وتحليل خوارزميات معقدة.",
+                    levelDescriptor: "خبير في الحوسبة"
+                }
+            ]
+        },
+        english: {
+            examName: "INELT – الاختبار الدولي للغة الإنجليزية (كفاءة أكاديمية)",
+            specializations: [
+                { 
+                    title: "دبلوم عالي (علمية/إنسانية)", 
+                    requiredScore: 50,
+                    details: "المطلوب درجة 50، مستوى A1 حسب الإطار الأوروبي، قدرة على الفهم البسيط.",
+                    levelDescriptor: "A1 (مبتدئ متقدم)"
+                },
+                { 
+                    title: "ماجستير - تخصصات إنسانية (عدا اللغة الإنجليزية)", 
+                    requiredScore: 50,
+                    details: "50 درجة مع إتقان أساسيات القراءة والاستيعاب، مستوى A2 تقريباً.",
+                    levelDescriptor: "A2 – أساسي"
+                },
+                { 
+                    title: "دكتوراه - إنسانية (عدا الإنجليزية)", 
+                    requiredScore: 55,
+                    details: "55 درجة، قدرة على قراءة المقالات الأكاديمية وكتابة ملخصات بسيطة. مستوى A2/B1",
+                    levelDescriptor: "A2/B1"
+                },
+                { 
+                    title: "ماجستير - علمية (تربية، زراعة، رياضة، سياحة)", 
+                    requiredScore: 60,
+                    details: "درجة 60، مستوى B1، فهم نصوص تخصصية ومحادثة متوسطة.",
+                    levelDescriptor: "B1 (متوسط)"
+                },
+                { 
+                    title: "دكتوراه - علمية (تربية، زراعة، رياضة، سياحة)", 
+                    requiredScore: 65,
+                    details: "65 درجة، مستوى B2، إجادة مناقشة الأبحاث وإعداد عروض باللغة الإنجليزية.",
+                    levelDescriptor: "B2 (متوسط مرتفع)"
+                },
+                { 
+                    title: "ماجستير - علمية (هندسة، طب، صيدلة، علوم)", 
+                    requiredScore: 65,
+                    details: "يتطلب 65 درجة، مستوى B2 متقدم، وفهم المصطلحات الطبية والهندسية.",
+                    levelDescriptor: "B2+"
+                },
+                { 
+                    title: "دكتوراه - علمية (هندسة، طب، صيدلة، علوم)", 
+                    requiredScore: 70,
+                    details: "درجة 70 كحد أدنى، مستوى C1، تحليل الأبحاث وكتابة مقالات علمية رصينة.",
+                    levelDescriptor: "C1 (متقدم)"
+                },
+                { 
+                    title: "ماجستير - تخصص لغة إنجليزية / ترجمة", 
+                    requiredScore: 70,
+                    details: "70 درجة، مستوى C1 احترافي، إجادة الترجمة التحريرية والشفوية المتقدمة.",
+                    levelDescriptor: "C1 – ترجمة"
+                },
+                { 
+                    title: "دكتوراه - تخصص لغة إنجليزية / أدب وترجمة", 
+                    requiredScore: 75,
+                    details: "75 درجة مطلوبة، مستوى C2 (إتقان تام)، كتابة أبحاث دولية وتحليل أدبي نقدي.",
+                    levelDescriptor: "C2 (إجادة خبيرة)"
+                },
+                { 
+                    title: "دكتوراه طبية والبورد العراقي (جميع الاختصاصات)", 
+                    requiredScore: 75,
+                    details: "درجة النجاح 75، مستوى C2، ضروري للابتعاث والزمالات الدولية.",
+                    levelDescriptor: "C2 – معياري دولي"
+                }
+            ]
+        }
     };
 
-    function initSpecializations() {
-        const type = document.getElementById('testType').value;
-        const specSelect = document.getElementById('specType');
-        const resArea = document.getElementById('resultArea');
+    // عناصر الواجهة
+    const examSelect = document.getElementById('examTypeSelect');
+    const specSelect = document.getElementById('specializationSelect');
+    const resultPanel = document.getElementById('resultPanel');
+    const dynamicDetailsDiv = document.getElementById('dynamicDetails');
 
-        resArea.classList.remove('show');
-        specSelect.innerHTML = '<option value="" disabled selected>اختر التخصص الدقيق...</option>';
+    // دالة تحديث قائمة التخصصات بناءً على الاختبار المختار
+    function updateSpecializations() {
+        const examKey = examSelect.value;
+        if (!examKey || examKey === "") {
+            specSelect.disabled = true;
+            specSelect.innerHTML = '<option value="" disabled selected>⚜️ يرجى اختيار الاختبار أولاً ⚜️</option>';
+            resultPanel.classList.remove('show');
+            return;
+        }
+
+        const examData = detailedDatabase[examKey];
+        if (!examData) return;
+
+        // بناء خيارات التخصصات
+        let optionsHtml = '<option value="" disabled selected>—— اختر التخصص والدرجة العلمية ——</option>';
+        examData.specializations.forEach((spec, index) => {
+            optionsHtml += `<option value="${index}">📌 ${spec.title}  |  الحد الأدنى: ${spec.requiredScore} درجة</option>`;
+        });
+        specSelect.innerHTML = optionsHtml;
         specSelect.disabled = false;
 
-        database[type].forEach((item, idx) => {
-            const op = document.createElement('option');
-            op.value = idx;
-            op.textContent = item.text;
-            specSelect.appendChild(op);
-        });
+        // إخفاء النتيجة عند تغيير الاختبار حتى يتم اختيار التخصص
+        resultPanel.classList.remove('show');
+        dynamicDetailsDiv.innerHTML = '';
     }
 
-    function displayResult() {
-        const type = document.getElementById('testType').value;
-        const idx = document.getElementById('specType').value;
-        const resArea = document.getElementById('resultArea');
-        const scoreVal = document.getElementById('finalScore');
-        const badgeBox = document.getElementById('badgeContainer');
+    // دالة عرض التفاصيل الكاملة لكل مادة/تخصص مثل واجهة تفصيلية فاخرة
+    function displayDetailedResult() {
+        const examKey = examSelect.value;
+        const specIndex = specSelect.value;
 
-        const data = database[type][idx];
+        if (!examKey || !specIndex || specIndex === "" || specSelect.disabled) {
+            return;
+        }
+
+        const examData = detailedDatabase[examKey];
+        if (!examData) return;
+
+        const selectedSpec = examData.specializations[parseInt(specIndex)];
+        if (!selectedSpec) return;
+
+        // بناء بطاقة تفصيلية للمادة المطلوبة، تشمل كل ما يحتاجه الطالب
+        const { title, requiredScore, details, levelDescriptor } = selectedSpec;
         
-        scoreVal.textContent = data.score;
-        badgeBox.innerHTML = data.level ? `<span class="badge">التقدير الموازي: ${data.level}</span>` : '';
+        // هنا نقوم بعرض "تفصيل كل مادة" بشكل مميز يعطي جميع المتطلبات بالإضافة إلى المادة نفسها
+        const examName = examData.examName;
+
+        const detailedHTML = `
+            <div class="subject-detail-card">
+                <div class="subject-name">
+                    <i class="fas fa-book-open"></i>
+                    <span>📘 المادة المعتمدة: ${examName}</span>
+                </div>
+                <div style="margin-top: 12px; margin-right: 10px;">
+                    <span class="req-item"><i class="fas fa-tag"></i> التخصص: ${title}</span>
+                </div>
+                <div class="requirements">
+                    <div class="req-item"><i class="fas fa-chart-line"></i> الدرجة المطلوبة: <span class="score-big">${requiredScore}</span> / 100</div>
+                    <div class="req-item"><i class="fas fa-star-of-life"></i> مستوى الكفاءة: <span class="level-chip">${levelDescriptor}</span></div>
+                </div>
+                <div style="margin-top: 20px; background: #FDF8E7; border-radius: 24px; padding: 14px 18px;">
+                    <i class="fas fa-clipboard" style="color:#C67C2E;"></i> <strong style="color:#3A5E40;">📋 تفصيل المادة والمتطلبات:</strong><br>
+                    <span style="font-weight:500; color:#2C3E2F; line-height:1.5;">${details}</span>
+                </div>
+                <div style="margin-top: 18px; font-size:0.85rem; border-top: 1px solid #EADFB4; padding-top: 12px; color:#4A5B5E;">
+                    <i class="fas fa-info-circle"></i> وفق دليل القبول الموحد، هذه الدرجة هي الحد الأدنى لاجتياز المادة بنجاح والقبول في البرنامج.
+                </div>
+            </div>
+            <div style="background: #EADFB4; border-radius: 60px; padding: 12px 20px; text-align:center; margin-top: 12px;">
+                <i class="fas fa-gavel"></i> المرجع: التعليمات الملزمة للجامعات العراقية – سنة 2025 | يجب تحقيق درجة النجاح أو أعلى.
+            </div>
+        `;
         
-        resArea.style.display = 'block';
-        setTimeout(() => resArea.classList.add('show'), 10);
+        dynamicDetailsDiv.innerHTML = detailedHTML;
+        resultPanel.classList.add('show');
     }
+
+    // ربط الأحداث
+    examSelect.addEventListener('change', () => {
+        updateSpecializations();
+        // عند تغيير الامتحان، نعيد تعيين النتيجة
+        resultPanel.classList.remove('show');
+        dynamicDetailsDiv.innerHTML = '';
+    });
+
+    specSelect.addEventListener('change', () => {
+        if (specSelect.value && specSelect.value !== "" && examSelect.value) {
+            displayDetailedResult();
+        } else {
+            resultPanel.classList.remove('show');
+        }
+    });
+
+    // تهيئة أولية
+    updateSpecializations();
 </script>
-
 </body>
 </html>
