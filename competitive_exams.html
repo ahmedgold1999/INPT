@@ -23,6 +23,32 @@
             margin: 0 auto;
         }
 
+        /* الشعار */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .app-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1E293B;
+            margin-bottom: 4px;
+        }
+
+        .app-subtitle {
+            font-size: 13px;
+            color: #64748B;
+        }
+
         /* الهيدر */
         .header {
             background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
@@ -334,7 +360,7 @@
             background: #F1F5F9;
         }
 
-        /* بطاقة البرنامج (ماجستير/دكتوراه) */
+        /* بطاقة البرنامج */
         .program-card {
             background: white;
             border-radius: 14px;
@@ -435,6 +461,13 @@
 </head>
 <body>
     <div class="container">
+        <!-- قسم الشعار -->
+        <div class="logo-section">
+            <img class="logo" src="https://lh3.googleusercontent.com/62o4dI-aZ9pqsHO6_gnqTX_ddu913ynG27UEmAYA_ptfbirY35Q2WwY0d-VmjchiU58AV5tBa0qFwv0E4i2HQw" alt="شعار التطبيق">
+            <div class="app-title">دليل الامتحان الوطني العراقي</div>
+            <div class="app-subtitle">المواعد التنافسية للدراسات العليا</div>
+        </div>
+
         <div class="header">
             <div class="header-icon">
                 <svg viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
@@ -456,7 +489,7 @@
 
     <script>
         // رابط ملف JSON (يمكنك تغييره لرابطك على GitHub)
-        const DATA_URL = 'https://raw.githubusercontent.com/ahmedgold1999/inptquestions/refs/heads/main/materials.json';
+        const DATA_URL = 'https://raw.githubusercontent.com/ahmedgold1999/inptiq/main/competitive_exams.json';
 
         let expandedUniversities = new Set();
         let expandedColleges = new Set();
@@ -607,9 +640,7 @@
             }).join('');
         }
 
-        // عرض البرامج (ماجستير ودكتوراه فقط)
         function renderPrograms(programs) {
-            // تصفية البرامج: فقط ماجستير ودكتوراه
             const filteredPrograms = programs.filter(p => p.type === 'master' || p.type === 'phd');
             
             if (filteredPrograms.length === 0) {
