@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>المواعد التنافسية - الدراسات العليا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر */
+        .header {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 32px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .header-icon {
+            background: rgba(255,255,255,0.15);
+            width: 70px;
+            height: 70px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .header-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: white;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+
+        /* آخر تحديث */
+        .last-updated {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .last-updated svg {
+            width: 20px;
+            height: 20px;
+            stroke: #3B82F6;
+        }
+
+        .last-updated span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E40AF;
+        }
+
+        /* القسم */
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #CBD5E1, transparent);
+        }
+
+        .section-title {
+            background: #F1F5F9;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* بطاقة الجامعة */
+        .university-card {
+            background: white;
+            border-radius: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .university-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: background 0.2s;
+        }
+
+        .university-header:hover {
+            background: #F8FAFC;
+        }
+
+        .university-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .university-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+        }
+
+        .university-info {
+            flex: 1;
+        }
+
+        .university-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1E293B;
+            margin-bottom: 4px;
+        }
+
+        .university-stats {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3B82F6;
+            background: rgba(59,130,246,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .university-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .university-arrow.expanded {
+            transform: rotate(180deg);
+        }
+
+        .expanded-content {
+            padding: 0 16px 16px 16px;
+            background: #F8FAFC;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        /* بطاقة الكلية */
+        .college-card {
+            background: white;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+
+        .college-header {
+            padding: 14px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .college-header:hover {
+            background: #F1F5F9;
+        }
+
+        .college-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(16,185,129,0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .college-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: #10B981;
+        }
+
+        .college-info {
+            flex: 1;
+        }
+
+        .college-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1E293B;
+        }
+
+        .college-stats {
+            font-size: 11px;
+            font-weight: 600;
+            color: #10B981;
+            background: rgba(16,185,129,0.1);
+            padding: 3px 8px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .college-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .college-arrow.expanded {
+            transform: rotate(180deg);
+        }
+
+        .college-content {
+            padding: 12px;
+            background: #F1F5F9;
+        }
+
+        /* بطاقة القسم */
+        .department-card {
+            background: #F8FAFC;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .department-header {
+            padding: 12px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border-radius: 14px;
+        }
+
+        .department-header:hover {
+            background: #F1F5F9;
+        }
+
+        .department-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(139,92,246,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .department-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #8B5CF6;
+        }
+
+        .department-info {
+            flex: 1;
+        }
+
+        .department-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1E293B;
+        }
+
+        .department-stats {
+            font-size: 11px;
+            font-weight: 600;
+            color: #8B5CF6;
+            background: rgba(139,92,246,0.1);
+            padding: 3px 8px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .department-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .department-arrow.expanded {
+            transform: rotate(180deg);
+        }
+
+        .department-content {
+            padding: 12px;
+            background: #F1F5F9;
+        }
+
+        /* بطاقة البرنامج (ماجستير/دكتوراه) */
+        .program-card {
+            background: white;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .program-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .program-badge.master {
+            background: rgba(59,130,246,0.1);
+            color: #3B82F6;
+        }
+
+        .program-badge.phd {
+            background: rgba(139,92,246,0.1);
+            color: #8B5CF6;
+        }
+
+        .program-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #1E293B;
+            margin-bottom: 10px;
+        }
+
+        .program-description {
+            background: #F1F5F9;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .pdf-button {
+            background: rgba(239,68,68,0.1);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #EF4444;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pdf-button:hover {
+            background: rgba(239,68,68,0.2);
+        }
+
+        .pdf-button svg {
+            width: 14px;
+            height: 14px;
+            stroke: #EF4444;
+        }
+
+        /* حالة التحميل */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #E2E8F0;
+            border-top-color: #3B82F6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        svg {
+            stroke-width: 1.8;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">
+                <svg viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+            </div>
+            <h1>المواعد التنافسية</h1>
+            <p>الدراسات العليا - ماجستير ودكتوراه</p>
+        </div>
+
+        <div id="content">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p style="color: #64748B;">جاري تحميل البيانات...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // رابط ملف JSON (يمكنك تغييره لرابطك على GitHub)
+        const DATA_URL = 'https://raw.githubusercontent.com/ahmedgold1999/inptiq/main/competitive_exams.json';
+
+        let expandedUniversities = new Set();
+        let expandedColleges = new Set();
+        let expandedDepartments = new Set();
+
+        async function loadData() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p style="color: #64748B;">جاري تحميل البيانات...</p></div>';
+            
+            try {
+                const response = await fetch(DATA_URL);
+                if (!response.ok) throw new Error('فشل تحميل البيانات');
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                console.error('خطأ:', error);
+                contentDiv.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <p style="color: #EF4444; margin-top: 16px;">حدث خطأ في تحميل البيانات</p>
+                        <button onclick="loadData()" style="margin-top: 20px; padding: 10px 24px; background: #3B82F6; color: white; border: none; border-radius: 12px; cursor: pointer;">إعادة المحاولة</button>
+                    </div>
+                `;
+            }
+        }
+
+        function renderData(data) {
+            const contentDiv = document.getElementById('content');
+            const universities = data.universities || [];
+            const lastUpdated = data.lastUpdated || '';
+
+            let html = `
+                <div class="last-updated">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>آخر تحديث: ${lastUpdated}</span>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-line"></div>
+                        <div class="section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                            </svg>
+                            <span>الجامعات</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+                </div>
+            `;
+
+            universities.forEach(university => {
+                html += renderUniversity(university);
+            });
+
+            contentDiv.innerHTML = html;
+        }
+
+        function renderUniversity(university) {
+            const isExpanded = expandedUniversities.has(university.id);
+            const collegesCount = university.colleges?.length || 0;
+            
+            return `
+                <div class="university-card">
+                    <div class="university-header" onclick="toggleUniversity('${university.id}')">
+                        <div class="university-icon">
+                            <svg viewBox="0 0 24 24" stroke="white">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                            </svg>
+                        </div>
+                        <div class="university-info">
+                            <div class="university-name">${university.name}</div>
+                            <span class="university-stats">${collegesCount} كلية</span>
+                        </div>
+                        <svg class="university-arrow ${isExpanded ? 'expanded' : ''}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </div>
+                    ${isExpanded ? `<div class="expanded-content">${renderColleges(university.colleges || [])}</div>` : ''}
+                </div>
+            `;
+        }
+
+        function renderColleges(colleges) {
+            return colleges.map(college => {
+                const isExpanded = expandedColleges.has(college.id);
+                const departmentsCount = college.departments?.length || 0;
+                
+                return `
+                    <div class="college-card">
+                        <div class="college-header" onclick="toggleCollege('${college.id}')">
+                            <div class="college-icon">
+                                <svg viewBox="0 0 24 24" stroke="currentColor">
+                                    <rect x="4" y="8" width="16" height="12" rx="2"/>
+                                    <path d="M12 4v4M8 2l4 2 4-2"/>
+                                </svg>
+                            </div>
+                            <div class="college-info">
+                                <div class="college-name">${college.name}</div>
+                                <span class="college-stats">${departmentsCount} قسم</span>
+                            </div>
+                            <svg class="college-arrow ${isExpanded ? 'expanded' : ''}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94A3B8">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                        ${isExpanded ? `<div class="college-content">${renderDepartments(college.departments || [])}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderDepartments(departments) {
+            return departments.map(department => {
+                const isExpanded = expandedDepartments.has(department.id);
+                const programsCount = department.programs?.length || 0;
+                
+                return `
+                    <div class="department-card">
+                        <div class="department-header" onclick="toggleDepartment('${department.id}')">
+                            <div class="department-icon">
+                                <svg viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M4 4h16v16H4z"/>
+                                    <line x1="8" y1="8" x2="16" y2="8"/>
+                                    <line x1="8" y1="12" x2="16" y2="12"/>
+                                    <line x1="8" y1="16" x2="12" y2="16"/>
+                                </svg>
+                            </div>
+                            <div class="department-info">
+                                <div class="department-name">${department.name}</div>
+                                <span class="department-stats">${programsCount} برنامج</span>
+                            </div>
+                            <svg class="department-arrow ${isExpanded ? 'expanded' : ''}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                        ${isExpanded ? `<div class="department-content">${renderPrograms(department.programs || [])}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // عرض البرامج (ماجستير ودكتوراه فقط)
+        function renderPrograms(programs) {
+            // تصفية البرامج: فقط ماجستير ودكتوراه
+            const filteredPrograms = programs.filter(p => p.type === 'master' || p.type === 'phd');
+            
+            if (filteredPrograms.length === 0) {
+                return `<div style="padding: 20px; text-align: center; color: #94A3B8; font-size: 13px;">لا توجد برامج دراسات عليا في هذا القسم</div>`;
+            }
+            
+            return filteredPrograms.map(program => {
+                const typeClass = program.type === 'master' ? 'master' : 'phd';
+                const typeText = program.type === 'master' ? 'ماجستير' : 'دكتوراه';
+                
+                return `
+                    <div class="program-card">
+                        <div class="program-badge ${typeClass}">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                ${program.type === 'master' ? 
+                                    '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>' : 
+                                    '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>'}
+                            </svg>
+                            <span>${typeText}</span>
+                        </div>
+                        <div class="program-name">${program.name}</div>
+                        ${program.description ? `<div class="program-description">${program.description}</div>` : ''}
+                        ${program.detailsUrl ? `
+                            <button class="pdf-button" onclick="window.open('${program.detailsUrl}', '_blank')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg>
+                                <span>عرض التفاصيل (PDF)</span>
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleUniversity(id) {
+            if (expandedUniversities.has(id)) {
+                expandedUniversities.delete(id);
+            } else {
+                expandedUniversities.add(id);
+            }
+            renderCurrentData();
+        }
+
+        function toggleCollege(id) {
+            if (expandedColleges.has(id)) {
+                expandedColleges.delete(id);
+            } else {
+                expandedColleges.add(id);
+            }
+            renderCurrentData();
+        }
+
+        function toggleDepartment(id) {
+            if (expandedDepartments.has(id)) {
+                expandedDepartments.delete(id);
+            } else {
+                expandedDepartments.add(id);
+            }
+            renderCurrentData();
+        }
+
+        async function renderCurrentData() {
+            try {
+                const response = await fetch(DATA_URL);
+                const data = await response.json();
+                renderData(data);
+            } catch (error) {
+                console.error('خطأ:', error);
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
